@@ -1,7 +1,7 @@
 const today = new Date();
 const formatDate = (date) => date.toISOString().split("T")[0];
 
-export const appointments = [
+export const appointmentsData = [
   {
     id: 1,
     name: "John Smith",
@@ -18,15 +18,15 @@ export const appointments = [
     time: "10:30:00",
     duration: 45,
     isCompleted: true,
-    date: formatDate(today), 
-  }, 
+    date: formatDate(today),
+  },
   {
     id: 3,
     name: "David Alee",
     type: "Follow-up",
     time: "12:00:00",
     duration: 30,
-    isCompleted: true, 
+    isCompleted: true,
     date: formatDate(today),
   },
   {
@@ -36,7 +36,7 @@ export const appointments = [
     time: "14:00:00",
     duration: 45,
     isCompleted: false,
-    date: formatDate(today), 
+    date: formatDate(today),
   },
   {
     id: 5,
@@ -45,7 +45,7 @@ export const appointments = [
     time: "14:40:00",
     duration: 30,
     isCompleted: false, //may become ongoing/missed
-    date: formatDate(today), 
+    date: formatDate(today),
   },
   {
     id: 6,
@@ -54,7 +54,7 @@ export const appointments = [
     time: "15:30:00",
     duration: 30,
     isCompleted: false,
-    date: formatDate(new Date (today.getTime() + 86400000)), //calculates against tomorrow 
+    date: formatDate(new Date(today.getTime() + 86400000)), //calculates against tomorrow 
   },
   {
     id: 7,
@@ -63,7 +63,7 @@ export const appointments = [
     time: "16:30:00",
     duration: 45,
     isCompleted: false,
-    date: formatDate(new Date (today.getTime() + 86400000)), //calculates against tomorrow 
+    date: formatDate(new Date(today.getTime() + 86400000)), //calculates against tomorrow 
   },
   {
     id: 8,
@@ -72,7 +72,6 @@ export const appointments = [
     time: "17:30:00",
     duration: 30,
     isCompleted: false,
-    date: formatDate(new Date (today.getTime() - 86400000)), //calculates yesterday 
+    date: formatDate(new Date(today.getTime() - 86400000)), //calculates yesterday 
   }
 ];
- 

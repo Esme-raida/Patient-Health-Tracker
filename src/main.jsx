@@ -3,11 +3,23 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx';
 import ThresholdProvider from './context/ThresholdContext.jsx';
+import PatientsProvider from './context/PatientsContext.jsx';
+import VitalsProvider from './context/VitalsContext.jsx';
+import NotesProvider from './context/NotesContext.jsx';
+import AppointmentsProvider from './context/AppointmentsContext.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <ThresholdProvider>
-        <App />
-    </ThresholdProvider>
+    <AppointmentsProvider>
+      <ThresholdProvider>
+        <PatientsProvider>
+          <VitalsProvider>
+            <NotesProvider>
+              <App />
+            </NotesProvider>
+          </VitalsProvider>
+        </PatientsProvider>
+      </ThresholdProvider>
+    </AppointmentsProvider>
   </StrictMode>,
 )

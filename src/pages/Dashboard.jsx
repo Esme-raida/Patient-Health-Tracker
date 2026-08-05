@@ -4,9 +4,12 @@ import DashboardCard from "../components/DashboardCard";
 import StatCard from "../components/StatCard";
 import IndividualAppointment from "../components/Individualappointment";
 import DashboardQuickActions from "../components/DashboardQuickActions";
-import { appointments } from "../data/appointmentData";
+import useAppointments from "../hooks/useAppointments";
 
-export default function Dashboard({ appointmentsList = appointments }) {
+export default function Dashboard() {
+
+    const { appointmentsList } = useAppointments();
+
     const today = new Date();
 
     // Filter today's appointments
