@@ -121,7 +121,7 @@ export default function HomePage() {
                     </h2>
                 </header>
                 <p className="flex items-center text-center text-gray-600 mb-10">
-                    Everything your clinical team needs to track patient journeys and make informed decisionsEverything you need for comprehensive remote health monitoring
+                    Everything your clinical team needs to track patient journeys and make informed decisions
                 </p>
 
                 <div className="max-w-4/5 mx-auto">
@@ -179,49 +179,54 @@ export default function HomePage() {
             <section className="flex flex-col items-center justify-center gap-5 py-15 px-5 bg-gray-100">
                 <header>
                     <h2 className="text-3xl font-bold">
-                        Who Uses  CareArc ?
+                        Who Uses CareArc?
                     </h2>
                 </header>
-                <dl className="flex items-center text-center text-gray-600 mb-10">
-                    Trusted by healthcare providers worldwide
-                </dl>
+                <p className="flex items-center text-center text-gray-600 mb-10">
+                    Built for the clinical teams who track patients over days, not just moments.
+                </p>
 
                 <div className="max-w-4/5 mx-auto">
                     <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 gap-3 justify-items-center" >
                         <div className="w-full h-full shadow p-4 border border-gray-300 rounded-lg">
                             <img
                                 src={hospital}
-                                alt="Home Care Providers"
+                                alt="Hospital Ward"
                                 className="w-2xl h-96 lg:h-64 mb-5 rounded-md"
                             />
-                            <UserGroupIcon className="h-8 w-8 mb-3 text-blue-500" />
-                            <h3 className="font-semibold text-lg">Hospitals & Clinics</h3>
+                            <ClipboardList className="h-8 w-8 mb-3 text-blue-500" />
+                            <h3 className="font-semibold text-lg">Ward Nurses</h3>
                             <p className="text-sm text-gray-600">
-                                Monitor ICU patients and reduce nurse workload with automated vital tracking
+                                Log timestamped vitals for every patient on the ward,
+                                see who is trending down before it becomes an emergency,
+                                and hand off with confidence.
                             </p>
                         </div>
                         <div className="w-full h-full shadow p-4 gap-3 border border-gray-300 rounded-lg">
                             <img
                                 src={homecare}
-                                alt="Home Care Providers"
+                                alt="Physician reviewing patient records"
                                 className="w-2xl h-96 lg:h-64  mb-5 rounded-md"
                             />
-                            <Heart className="h-8 w-8 mb-3 text-blue-500" />
-                            <h3 className="font-semibold text-lg mb-2">Home Care Providers</h3>
+                            <Brain className="h-8 w-8 mb-3 text-blue-500" />
+                            <h3 className="font-semibold text-lg mb-2">Attending Physicians</h3>
                             <p className="text-sm text-gray-600">
-                                Enable elderly patients to age in place safely with remote monitoring
+                                Review a patient's vitals history, clinical notes, and
+                                AI-generated summary before rounds — so
+                                every clinical decision is backed by the full picture.
                             </p>
                         </div>
                         <div className="w-full h-full shadow p-4 border border-gray-300 rounded-lg">
                             <img
                                 src={telehealth}
-                                alt="TeleHealth Platforms"
+                                alt="Clinical team handover"
                                 className="w-2xl h-96 lg:h-64 mb-5 rounded-md"
                             />
-                            <DevicePhoneMobileIcon className="h-8 w-8 mb-3 text-blue-500" />
-                            <h3 className="font-semibold text-lg mb-2">Telehealth Platforms</h3>
+                            <DocumentTextIcon className="h-8 w-8 mb-3 text-blue-500" />
+                            <h3 className="font-semibold text-lg mb-2">Handover Teams</h3>
                             <p className="text-sm text-gray-600">
-                                Integrate real-time virtals into virtual consultations for better diagnosis
+                                End every shift with a structured, AI-powered handover that captures what changed,
+                                what's pending, and what the next team needs to act on immediately.
                             </p>
                         </div>
                     </div>
@@ -244,9 +249,9 @@ export default function HomePage() {
                     <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 gap-3 justify-items-center" >
                         <div className="w-full shadow px-5 pt-10 pb-8 border border-gray-300 rounded-lg">
                             <p className="text-sm text-gray-600 italic pb-5">
-                                " CareArc reduced our alert response time by 60%.
+                                "Having the patient's full vitals history in one place, with trend indicators,
                                 <br />
-                                Our patients are safer."
+                                means I know exactly what changed before I even walk into the room."
                             </p>
                             <div className="flex gap-4">
                                 <img
@@ -256,43 +261,43 @@ export default function HomePage() {
                                 />
                                 <div className="flex flex-col">
                                     <h3 className="font-bold">Dr. Sarah Chen</h3>
-                                    <dl className="text-gray-600 text-sm">ICU Director, Metro Hospital</dl>
+                                    <p className="text-gray-600 text-sm">ICU Director, Consultant</p>
                                 </div>
                             </div>
                         </div>
                         <div className="w-full shadow px-5 pt-10 pb-8 border border-gray-300 rounded-lg">
                             <p className="text-sm text-gray-600 italic pb-5">
-                                "Our elderly patients feel more independent, and
+                                "The dashboard tells me which patient needs my attention first.
                                 <br />
-                                we have peace of mind."
+                                I don't have to guess anymore."
                             </p>
                             <div className="flex gap-4">
                                 <img
                                     src={jamesrodriguez}
-                                    alt="James Rodriguez"
+                                    alt="Nurse Rahma Ali"
                                     className="w-10 rounded-full"
                                 />
                                 <div className="flex flex-col">
-                                    <h3 className="font-bold">James Rodriguez</h3>
-                                    <dl className="text-gray-600 text-sm">Home Care Manager</dl>
+                                    <h3 className="font-bold">Nurse Rahma Ali</h3>
+                                    <p className="text-gray-600 text-sm">Ward Nurse, General Hospital</p>
                                 </div>
                             </div>
                         </div>
                         <div className="w-full shadow px-5 pt-10 pb-8 border border-gray-300 rounded-lg">
                             <p className="text-sm text-gray-600 italic pb-5">
-                                "The real-time vitals integration transformed our
+                                "Generating a structured handover used to take me 20 minutes.
                                 <br />
-                                virtual consultations."
+                                CareArc's AI summary gets it done in seconds — and it's more thorough."
                             </p>
                             <div className="flex gap-4">
                                 <img
                                     src={priyapatel}
-                                    alt="Dr. Priya Patel"
+                                    alt=" Dr. Emeka Okafor"
                                     className="w-10 rounded-full"
                                 />
                                 <div className="flex flex-col">
-                                    <h3 className="font-bold">Dr. Priya Patel</h3>
-                                    <dl className="text-gray-600 text-sm">Telehealth Clinic Owner</dl>
+                                    <h3 className="font-bold"> Dr. Emeka Okafor</h3>
+                                    <p className="text-gray-600 text-sm">Shift Lead, Emergency Department</p>
                                 </div>
                             </div>
                         </div>
@@ -301,14 +306,15 @@ export default function HomePage() {
                 </div>
                 <article className="sm: max-w-4/5 lg: w-full bg-blue-100 flex flex-col items-center text-center gap-5 p-10 mt-5 border border-blue-300 rounded-lg">
                     <h3 className="text-3xl font-bold">Ready to Transform Patient Care?</h3>
-                    <dl className="text-gray-500">
-                        Experience real-time health monitoring with CareArc Start montoring today and see the
-                        <br />difference.
-                    </dl>
-                    <button className="flex items-center  justify-center gap-2 px-2 py-2 border border-blue-700 bg-blue-500 rounded-lg text-white">
-                        Get Started
-                        <ArrowRightIcon className="w-3 h-3 mt-0.5" />
-                    </button>
+                    <p className="text-gray-500">
+                        Join clinical teams already using CareArc to track patient journeys and surface what matters most.
+                    </p>
+                    <Link to="/dashboard">
+                        <button className="flex items-center  justify-center gap-2 px-2 py-2 border border-blue-700 bg-blue-500 rounded-lg text-white">
+                            Get Started
+                            <ArrowRightIcon className="w-3 h-4 " />
+                        </button>
+                    </Link>
                 </article>
             </section>
 
@@ -317,7 +323,7 @@ export default function HomePage() {
             <section className="bg-gray-100 flex flex-col items-center px-4 sm:px-8 lg:px-10 w-full">
                 <div className="flex flex-col items-center gap-3 m-10 mb-10">
                     <h3 className="font-bold text-3xl">Get In Touch</h3>
-                    <dl className="text-gray-500">Have questions? We'd love to hear from you. Our team is ready to help.</dl>
+                    <p className="text-gray-500">Have questions? We'd love to hear from you. Our team is ready to help.</p>
                 </div>
                 <div className="flex w-full max-w-6xl flex-col gap-10 lg:flex-row lg:gap-20">
                     <div className="flex flex-col gap-5">
@@ -325,7 +331,7 @@ export default function HomePage() {
                             <Mail className="w-10 h-10 px-2 rounded-full bg-blue-200 text-blue-500" />
                             <div className="flex flex-col">
                                 <h3 className="font-semibold">Email</h3>
-                                <dl className="text-gray-500">support@CareArc.health</dl>
+                                <p className="text-gray-500">support@CareArc.health</p>
                             </div>
                         </div>
                         <div className="flex flex-col">
@@ -333,7 +339,7 @@ export default function HomePage() {
                                 <Phone className="w-10 h-10 px-2 rounded-full bg-blue-200  text-blue-500" />
                                 <div className="flex flex-col">
                                     <h3 className="font-semibold">Phone</h3>
-                                    <dl className="text-gray-500">+1 (555) 123-4567</dl>
+                                    <p className="text-gray-500">+234 (801) 234-5678</p>
                                 </div>
                             </div>
                         </div>
@@ -342,19 +348,24 @@ export default function HomePage() {
                                 <LocateIcon className="w-10 h-10 px-2 rounded-full bg-blue-200  text-blue-500" />
                                 <div className="flex flex-col">
                                     <h3 className="font-semibold">Office</h3>
-                                    <dl className="text-gray-500">San Francisco, CA 94102.</dl>
+                                    <p className="text-gray-500">Abuja, Nigeria.</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div className="flex flex-col gap-3.5 mb-10 w-full lg:w-auto">
-                        <input type="text" placeholder="Your Name"
-                            className="w-full lg:w-80 border border-gray-200 bg-white rounded-lg px-5 py-2 outline-0" />
-                        <input type="email" placeholder="Your Email"
-                            className="w-full lg:w-80 border border-gray-200 bg-white rounded-lg px-5 py-2 outline-0" />
-                        <textarea rows="5" placeholder="Your Message"
-                            className="w-full lg:w-80 border border-gray-200 bg-white rounded-lg px-5 py-2 outline-0" />
-                        <button className="bg-blue-500 text-white w-full lg:w-80 rounded-lg px-5 py-2 text-center">Send Message</button>
+                    <div className="mb-10 w-full lg:w-auto bg-white border border-gray-200 
+                    p-6 rounded-xl shadow-sm">
+                        <h4 className="pb-4 text-lg font-bold text-blue-700">Clinical Pilot Program</h4>
+                        <div className="flex flex-col gap-4 text-gray-600">
+                            <p>CareArc is currently being deployed in active pilot phases across select healthcare systems. We are working closely
+                                with clinical departments to refine our longitudinal timeline structures, delta engines, and AI integrations.
+                            </p>
+
+                            <p>
+                                If you are interested in requesting a system demonstration or participating in our next
+                                onboarding group, please contact our integration team directly.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </section>
