@@ -2,13 +2,13 @@ import { Link } from "react-router-dom"
 import { ArrowRightIcon } from "@heroicons/react/24/solid"
 import { Activity, Brain, ClipboardList, ClockIcon, HeartIcon, Mail, Phone, LocateIcon, Heart } from "lucide-react"
 import { DocumentTextIcon, SparklesIcon, ShieldCheckIcon, DevicePhoneMobileIcon, UserGroupIcon, ArrowTrendingUpIcon } from "@heroicons/react/24/outline"
-import bgImage from "../assets/modern-healthcare-monitoring-dashboard-with-doctor.jpg"
-import telehealth from "../assets/doctor-video-consultation-with-patient-vital-signs.jpg"
-import homecare from "../assets/elderly-patient-at-home-with-wearable-health-devic.jpg"
-import hospital from "../assets/hospital-icu-with-medical-monitors-and-healthcare-.jpg"
-import sarahchen from "../assets/professional-healthcare-doctor-portrait.jpg"
-import jamesrodriguez from "../assets/healthcare-professional-caregiver-portrait.jpg"
-import priyapatel from "../assets/female-doctor-portrait.png"
+import bgImage from "../assets/clinic_hero_dashboard.png"
+import telehealth from "../assets/clinical_handover.png"
+import homecare from "../assets/physician_review.png"
+import hospital from "../assets/ward_nurses.png"
+import sarahchen from "../assets/dr_sarah_chen.png"
+import jamesrodriguez from "../assets/nurse_rahma_ali.png"
+import priyapatel from "../assets/dr_emeka_okafor.png"
 import Footer from "../components/Footer";
 
 
@@ -44,7 +44,7 @@ export default function HomePage() {
                     className="absolute inset-0 w-full h-full object-cover"
                 />
 
-                <div className="absolute inset-0 bg-black/70"></div>
+                <div className="absolute inset-0 bg-black/85"></div>
 
                 <div className="relative z-10 flex flex-col items-center gap-8">
                     <button className="flex flex-row items-center gap-1 bg-blue-100 text-blue-500 text-sm font-medium px-4 py-2 rounded-full">

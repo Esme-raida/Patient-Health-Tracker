@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import InputComponent from './InputComponent';
 import useAppointments from '../hooks/useAppointments';
+import usePatients from '../hooks/usePatients';
 
 export default function AppointmentForm({ setAppointmentsList, setIsFormOpen, defaultPatientId = "" }) {
 
+    const { patientsArray } = usePatients();
     const [formData, setFormData] = useState({
         patientId: defaultPatientId || "",
         type: "",
@@ -27,9 +29,12 @@ export default function AppointmentForm({ setAppointmentsList, setIsFormOpen, de
             onSubmit={(e) => {
                 e.preventDefault(); //prevent the default reload
 
+                const patient = patientsArray.find(patient => patient.id === formData.patientId);
+
                 //creates a new appointment object I can append to appointmentsList
                 const newAppointment = {
                     ...formData,
+                    name: patient ? patient.name : "Unknown Patient",
                     id: Date.now(),
                     isCompleted: false,
                 };

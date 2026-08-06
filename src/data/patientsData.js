@@ -9,6 +9,7 @@ export const patientColumns = [
   { key: "room", label: "Room" },
   { key: "condition", label: "Condition" },
   { key: "admitted", label: "Admitted" },
+  { key: "status", label: "Status" },
 ];
 
 export const patients = [

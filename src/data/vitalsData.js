@@ -92,7 +92,7 @@ export const vitalsData = [
     id: "VIT-008",
     patientId: "PT-001",
     timestamp: "2026-07-28T14:00:00",
-    heartRate: 105,
+    heartRate: 125,
     bloodPressure: { systolic: 138, diastolic: 92 },
     oxygen: 90,
     temperature: 38.7,

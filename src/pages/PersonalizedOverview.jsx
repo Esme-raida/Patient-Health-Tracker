@@ -22,8 +22,6 @@ export default function PersonalizedOverview() {
         //For Heart Rate
         //COME BACK TO THIS 
         const heartRate = latestVital.heartRate;
-        console.log(heartRate);
-
     }
 
     return (

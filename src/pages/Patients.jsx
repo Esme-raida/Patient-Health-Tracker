@@ -5,15 +5,58 @@ import { patientColumns } from "../data/patientsData.js";
 import { useState } from "react";
 import usePatients from "../hooks/usePatients";
 import useVitals from "../hooks/useVitals";
+import useThresholds from "../hooks/useThreshold.jsx";
+import { getStatus, getStatusDotStyles } from "../utils/getStatus.js";
 
 export default function Patients() {
 
     const { patientsArray } = usePatients();
     const { vitalsArray } = useVitals();
+    const { thresholds } = useThresholds();
 
     const [searchValue, setSearchValue] = useState("");
-    const filteredPatients = patientsArray.filter(patient =>
-        (patient.name || "").toLowerCase().includes(searchValue))
+    //The sorting function to automatically grab the latest vitals, score their severity, 
+    //and float the most critical patients to the very top of the list so they get attention first.
+    const searchedPatients = patientsArray.filter(patient => (patient.name).toLowerCase().includes(searchValue));
+    const filteredPatients = searchedPatients.sort((a, b) => {
+        const vitalsA = vitalsArray.filter(vital => vital.patientId === a.id);
+        const vitalsB = vitalsArray.filter(vital => vital.patientId === b.id);
+
+        const latestVitalA = vitalsA.length > 0 ? vitalsA.reduce((latest, current) =>
+            new Date(current.timestamp) > new Date(latest.timestamp) ? current : latest
+        ) : null;
+
+        const latestVitalB = vitalsB.length > 0 ? vitalsB.reduce((latest, current) =>
+            new Date(current.timestamp) > new Date(latest.timestamp) ? current : latest
+        ) : null;
+
+        const statusA = getStatus(latestVitalA, thresholds);
+        const statusB = getStatus(latestVitalB, thresholds);
+
+
+        function sortingfunction(status) {
+            if (status === "Critical") return 3;
+            if (status === "Warning") return 2;
+            if (status === "Stable") return 1;
+            if (status === "No Data") return 0;
+            return 0;
+
+        }
+
+        const priorityA = sortingfunction(statusA);
+        const priorityB = sortingfunction(statusB);
+
+        //sort between a & b such that it makes use of subtraction
+        //assuming a = 2 and b = 5, sort runs 2-5, this is -3, so in this case it means 2 < 5
+        //meaning a comes before b, and it returns negative..
+        //if b comes before a, it returns positive....i.e
+        //if the order remains, it returns 0.
+
+        return priorityB - priorityA
+
+
+    })
+
 
     return (
         <main className="flex flex-col min-h-screen px-7 bg-gray-100">
@@ -67,33 +110,43 @@ export default function Patients() {
                         {filteredPatients.map((patient) => {
                             const patientVitals = vitalsArray.filter((vitals) => vitals.patientId === patient.id);
                             let latestVitalTime = null
-                            //sort between a & b such that it makes use of subtraction
-                            //assuming a = 2 and b = 5, sort runs 2-5, this is -3, so in this case it means 2 < 5
-                            //meaning a comes before b, and it returns negative..
-                            //if b comes before a, it returns positive....i.e
-                            //if the order remains, it returns 0.
+
                             const latestVitals = patientVitals.length > 0 ? patientVitals.reduce((latest, current) =>
                                 new Date(current.timestamp) > new Date(latest.timestamp) ? current : latest
                             ) : null;
                             latestVitalTime = latestVitals ? latestVitals.timestamp.split("T")[1].slice(0, 5) : null;
-
+                            const patientStatus = getStatus(latestVitals, thresholds);
 
                             //for every patient in the patients array, create a table row
                             return (
                                 <tr key={patient.id} className="border-b border-b-gray-100">
                                     {/*Inside each row....loop through the columns*/}
-                                    {patientColumns.map((column) => (
-                                        //for each column in the patientsColumn array, create one table cell
-                                        <td key={column.key} className="px-4 py-3 text-sm text-gray-700 text-left hover:cursor-pointer">
-                                            {column.key === "name" ? (
-                                                //If the column is a name --- I'll use link cause Ineed it to be a link
-                                                <Link to={`/dashboard/patients/patientsdetail/${patient.id}`}
-                                                    className="font-semibold text-blue-800">{patient[column.key]}</Link>
-                                            ) : (
-                                                patient[column.key]
-                                            )}
-                                        </td>
-                                    ))}
+                                    {patientColumns.map((column) => {
+                                        let cellContent;
+
+                                        if (column.key === "name") {
+                                            //If the column is a name --- I'll use link cause Ineed it to be a link
+                                            cellContent = <Link to={`/dashboard/patients/patientsdetail/${patient.id}`}
+                                                className="font-semibold text-blue-800">{patient[column.key]}</Link>
+                                        }
+                                        else if (column.key === "status") {
+                                            cellContent =
+                                                <span className="inline-flex justify-center items-center gap-2 font-medium">
+                                                    <span className={`h-2 w-2 rounded-full ${getStatusDotStyles(patientStatus)}`}></span>
+                                                    <span className="text-gray-700 text-xs">{patientStatus}</span>
+                                                </span>
+
+                                        } else {
+                                            cellContent = patient[column.key]
+                                        }
+
+                                        return (
+                                            //for each column in the patientsColumn array, create one table cell
+                                            <td key={column.key} className="px-4 py-3 text-sm text-gray-700 text-left hover:cursor-pointer">
+                                                {cellContent}
+                                            </td>
+                                        )
+                                    })}
                                     {/* That is for each patient, for each column, show patient[propertyName] */}
 
                                     {/*For the part added manually and not in the loop*/}

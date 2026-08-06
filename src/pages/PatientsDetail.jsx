@@ -1,4 +1,6 @@
-import { ThermometerIcon, ActivityIcon, CalendarIcon, DropletsIcon, HeartIcon, TriangleAlertIcon, ArrowRightIcon, AlertTriangleIcon } from "lucide-react";
+import { ThermometerIcon, ActivityIcon, CalendarIcon, DropletsIcon, HeartIcon } from "lucide-react";
+import { DocumentPlusIcon, DocumentIcon, DocumentTextIcon } from "@heroicons/react/24/outline";
+import { useState, useEffect } from "react";
 import { Outlet, useParams } from "react-router-dom";
 import usePatients from "../hooks/usePatients.jsx";
 import useVitals from "../hooks/useVitals.jsx";
@@ -10,8 +12,6 @@ import ActionCards from "../components/ActionCards";
 import IndividualNavLink from "../components/IndividualNavLink";
 import { PatientDetailContext } from "../context/PatientsDetailContext";
 import PersonalizedQuickActions from "../components/PersonalizedQuickActions.jsx";
-import { DocumentPlusIcon, DocumentTextIcon, ClipboardDocumentIcon, ClipboardDocumentListIcon, DocumentIcon } from "@heroicons/react/24/outline";
-import { useState, useEffect } from "react";
 import AddNoteForm from "../components/AddNoteForm.jsx";
 import AppointmentForm from "../components/AppointmentForm.jsx";
 import RecordVitalsForm from "../components/RecordVitalsForm.jsx";
@@ -30,20 +30,6 @@ export default function PateintDetail() {
     // useParams is how a page reads info from the URL
     const { patientsId } = useParams(); //this grabs <patient.id> from the URL    
 
-
-
-    //LOGIC TO READ APPPOINTMENTS IMMEDIATLEY PAGE LOADS 
-    useEffect(() => {
-        //loading appointments from localStorage
-
-        const storedAppointments = localStorage.getItem("patientsAppointments");
-        const storedAppointmentsObj = storedAppointments ? JSON.parse(storedAppointments) : {};
-
-        const patientAppointmentForThisPatient = storedAppointmentsObj[patientsId];
-        const personalizedPatientAppointment = patientAppointmentForThisPatient ? patientAppointmentForThisPatient : [];
-
-        setAppointmentsList(personalizedPatientAppointment);
-    }, [patientsId]);
     //.find returns a single patient
     const patient = patientsArray.find(patient => patient.id === patientsId);
 

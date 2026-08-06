@@ -5,10 +5,14 @@ import StatCard from "../components/StatCard";
 import IndividualAppointment from "../components/Individualappointment";
 import DashboardQuickActions from "../components/DashboardQuickActions";
 import useAppointments from "../hooks/useAppointments";
+import usePatients from "../hooks/usePatients";
+import { Link } from "react-router-dom";
 
 export default function Dashboard() {
 
     const { appointmentsList } = useAppointments();
+    const { patientsArray } = usePatients();
+    console.log(patientsArray)
 
     const today = new Date();
 
@@ -34,10 +38,14 @@ export default function Dashboard() {
             {/* Stat Cards */}
             <section className="flex flex-col gap-5 mb-5">
                 <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
-                    <StatCard cardLabel="Total Patients" CardValue="156" icon={UserGroupIcon} iconColor="text-blue-500" />
+                    <StatCard cardLabel="Total Patients" CardValue={patientsArray.length} icon={UserGroupIcon} iconColor="text-blue-500" />
                     <StatCard cardLabel="Today's Appointments" CardValue={todayAppointments.length} icon={CalendarIcon} iconColor="text-green-500" />
-                    <StatCard cardLabel="Pending Visits" CardValue="8" icon={DocumentDuplicateIcon} iconColor="text-amber-500" />
-                    <StatCard cardLabel="Newly Registered Patients" CardValue="3" icon={UserGroupIcon} iconColor="text-purple-500" />
+                    <StatCard cardLabel="Pending Visits" CardValue={todayAppointments.filter((appointmentsList) => !appointmentsList.isCompleted).length} icon={DocumentDuplicateIcon} iconColor="text-amber-500" />
+                    <StatCard cardLabel="Newly Registered Patients" CardValue={patientsArray.filter((patient) => {
+                        const millisecondsDifference = today - new Date(patient.admitted);
+                        const daysDifference = Math.floor(millisecondsDifference / 86400000)
+                        return daysDifference <= 30;
+                    }).length} icon={UserGroupIcon} iconColor="text-purple-500" />
                 </div>
             </section>
 
@@ -77,8 +85,12 @@ export default function Dashboard() {
             {/* Quick Actions */}
             <h2 className="font-semibold mt-5 mb-3">Quick Actions</h2>
             <div className="flex flex-row gap-3 mb-5">
-                <DashboardQuickActions quickActionTitle="Add Patient" icon={UserPlusIcon} />
-                <DashboardQuickActions quickActionTitle="New Appointment" icon={PlusIcon} />
+                <Link to={'/dashboard/patients/addpatientpage'}>
+                    <DashboardQuickActions quickActionTitle="Add Patient" icon={UserPlusIcon} />
+                </Link>
+                <Link to={'/dashboard/appointments'}>
+                    <DashboardQuickActions quickActionTitle="New Appointment" icon={PlusIcon} />
+                </Link>
                 {/* Future actions like Generate Report or Configure Alerts can be added later */}
             </div>
         </main>
